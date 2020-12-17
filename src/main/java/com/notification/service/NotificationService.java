@@ -1,8 +1,9 @@
 package com.notification.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
+import com.notification.model.CoolantEventNotification;
+
 public interface NotificationService {
-	String getNotification(String carNo);
+	public List<?> getNotification(String vin);
 }

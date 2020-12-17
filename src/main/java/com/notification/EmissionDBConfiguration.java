@@ -1,4 +1,4 @@
-package com.notification.config;
+package com.notification;
 
 import com.azure.cosmos.CosmosClientBuilder;
 import com.azure.cosmos.DirectConnectionConfig;
@@ -22,14 +22,14 @@ import org.springframework.lang.Nullable;
 @EnableCosmosRepositories//(basePackages = "com.notification")
 @EnableReactiveCosmosRepositories
 @PropertySource("classpath:application.properties")
-public class CoolantDBConfiguration extends AbstractCosmosConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(CoolantDBConfiguration.class);
+public class EmissionDBConfiguration extends AbstractCosmosConfiguration {
+    private static final Logger logger = LoggerFactory.getLogger(EmissionDBConfiguration.class);
 
     @Autowired
     private CosmosProperties properties;
 
 //    @Bean
-    @Bean//(name = "coolanteventdb")
+    @Bean(name = "emissioneventdb")
     public CosmosClientBuilder cosmosClientBuilder() {
         DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
         return new CosmosClientBuilder()
@@ -38,7 +38,7 @@ public class CoolantDBConfiguration extends AbstractCosmosConfiguration {
             .directMode(directConnectionConfig);
     }
 
-    @Bean//(name="coolanteventdbConfig")
+    @Bean(name="emissioneventdbConfig")
     public CosmosConfig cosmosConfig() {
         return CosmosConfig.builder()
                            .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
@@ -48,7 +48,7 @@ public class CoolantDBConfiguration extends AbstractCosmosConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "coolanteventdb";
+        return "emissioneventdb";
     }
 
     private static class ResponseDiagnosticsProcessorImplementation implements ResponseDiagnosticsProcessor {

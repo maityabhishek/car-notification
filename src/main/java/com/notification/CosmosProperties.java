@@ -1,4 +1,4 @@
-package com.notification.config;
+package com.notification;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
