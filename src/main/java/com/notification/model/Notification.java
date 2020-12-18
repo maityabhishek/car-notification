@@ -1,22 +1,24 @@
 package com.notification.model;
 
+import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 
+@Container(containerName = "eventcontainer", ru = "400")
 public class Notification {
 
 	String id;
+	Integer vin;
 	@PartitionKey
-	String vin;
 	String eventname;
-	String eventval;
+	Integer eventval;
 	String eventtype;
 	String eventdesc;
 	String eventdate;
 	
-	public String getVin() {
+	public Integer getVin() {
 		return vin;
 	}
-	public void setVin(String vin) {
+	public void setVin(Integer vin) {
 		this.vin = vin;
 	}
 	public String getEventname() {
@@ -25,10 +27,10 @@ public class Notification {
 	public void setEventname(String eventname) {
 		this.eventname = eventname;
 	}
-	public String getEventval() {
+	public Integer getEventval() {
 		return eventval;
 	}
-	public void setEventval(String eventval) {
+	public void setEventval(Integer eventval) {
 		this.eventval = eventval;
 	}
 	public String getEventtype() {
@@ -51,7 +53,7 @@ public class Notification {
 	}
 
 	
-	public Notification(String vin, String eventname, String eventval, String eventtype, String eventdesc,
+	public Notification(Integer vin, String eventname, Integer eventval, String eventtype, String eventdesc,
 			String eventdate) {
 		super();
 		this.vin = vin;
