@@ -10,7 +10,7 @@ import com.notification.model.Notification;
 @Repository
 public interface NotificationDAO extends CosmosRepository<Notification, String> {
 	
-	List<Notification> findByVin(int vin);
+	List<Notification> findByVinOrderByEventdateDesc(Integer vin);
 
 //	@Query(value = "select * from c where c.vin = @vin")
 //    List<Notification> findByVin(@Param("vin") String vin);
