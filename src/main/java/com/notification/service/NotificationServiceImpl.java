@@ -2,6 +2,8 @@ package com.notification.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,19 @@ public class NotificationServiceImpl implements NotificationService {
 
 	@Override
 	public List<?> getNotificationByVin(Integer vin) {
-		List<Notification> notificationList = notificationDAO.findByVin(vin);
+		Set<String> eventNames = new HashSet<String>();
+		List<Notification> finalNotificationList = new ArrayList<Notification>();
+		List<Notification> notificationList = notificationDAO.findByVinOrderByEventdateDesc(vin);
 		if (notificationList == null || notificationList.isEmpty()) {
 			notificationList = new ArrayList<Notification>();
 		}
-		return notificationList;
+		for(Notification notification: notificationList) {
+			if(eventNames.add(notification.getEventname())) {
+				finalNotificationList.add(notification);
+			}
+		}
+
+		return finalNotificationList;
 
 	}
 
